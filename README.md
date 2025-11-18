@@ -1,1 +1,1 @@
-# earnings-agent
+# Augmented Stock Market AI Assistant
