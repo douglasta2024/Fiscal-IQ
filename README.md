@@ -1,1 +1,1 @@
-# Augmented Stock Market AI Assistant
+# Fiscal-IQ
