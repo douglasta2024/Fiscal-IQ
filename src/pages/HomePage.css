@@ -1,0 +1,118 @@
+.home-wrapper {
+  min-height: 100vh;
+  background-color: #0b0b0e;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+.home-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 10;
+  padding: 0 20px;
+}
+
+.hero-content {
+  max-width: 800px;
+  z-index: 20;
+}
+
+.hero-title {
+  font-size: 5rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -2px;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #a0a0b0;
+  line-height: 1.6;
+  margin-bottom: 50px;
+  font-weight: 400;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.primary-button,
+.secondary-button {
+  text-decoration: none;
+  padding: 14px 32px;
+  border-radius: 30px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+}
+
+.primary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
+}
+
+.secondary-button {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.secondary-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Decorative Background Elements */
+.gradient-sphere {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.sphere-1 {
+  width: 400px;
+  height: 400px;
+  background: #FF4081;
+  top: 10%;
+  left: -10%;
+}
+
+.sphere-2 {
+  width: 500px;
+  height: 500px;
+  background: #007BFF;
+  bottom: -20%;
+  right: -10%;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 3.5rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+}
