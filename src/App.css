@@ -1,0 +1,330 @@
+/* =========================================
+   1. GLOBAL RESET & PAGE SETUP
+   ========================================= */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden; 
+  color: #e0e0e0;
+}
+
+/* =========================================
+   2. CORE REACT-GRID-LAYOUT STYLES
+   ========================================= */
+.react-grid-layout {
+  position: relative;
+  transition: height 200ms ease;
+}
+
+.react-grid-item {
+  transition: all 200ms ease;
+  transition-property: left, top;
+  z-index: 10; 
+  position: absolute;
+}
+
+.react-grid-placeholder {
+  background: rgba(41, 98, 255, 0.2) !important; 
+  border: 1px dashed #2962ff;
+  border-radius: 4px;
+  opacity: 0.5;
+  z-index: 5;
+}
+
+.react-resizable-handle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 0;
+  right: 0;
+  cursor: se-resize;
+  z-index: 100;
+}
+
+.react-resizable-handle::after {
+  content: "";
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 5px;
+  height: 5px;
+  border-right: 2px solid #666;
+  border-bottom: 2px solid #666;
+}
+
+/* =========================================
+   3. DASHBOARD CONTAINER
+   ========================================= */
+.dashboard-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 80px 20px 20px 20px;
+  box-sizing: border-box;
+}
+
+/* =========================================
+   4. FLOATING ACTION BUTTON (Add Widget)
+   ========================================= */
+.add-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  
+  /* Dimensions */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  
+  /* Glassmorphism */
+  background-color: rgba(41, 98, 255, 0.5);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  cursor: pointer;
+  z-index: 2000;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  
+  /* CRITICAL FIXES FOR SHAPE */
+  padding: 0; 
+  flex-shrink: 0; 
+  display: flex; /* Keeps the internal lines aligned */
+}
+
+/* DRAW THE PLUS SIGN (Horizontal Line) */
+.add-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px; /* Length of the plus */
+  height: 3px; /* Thickness */
+  background-color: white;
+  border-radius: 2px;
+}
+
+/* DRAW THE PLUS SIGN (Vertical Line) */
+.add-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3px; /* Thickness */
+  height: 24px; /* Length */
+  background-color: white;
+  border-radius: 2px;
+}
+
+.add-btn:hover {
+  background-color: rgba(41, 98, 255, 1);
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(41, 98, 255, 0.6);
+}
+
+/* =========================================
+   5. WIDGET STYLING
+   ========================================= */
+.dashboard-widget {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  overflow: visible; 
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.widget-header {
+  background-color: #2c2c2c;
+  padding: 0 10px;
+  height: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: grab;
+  border-bottom: 1px solid #333;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  position: relative;
+}
+
+.widget-header:active {
+  cursor: grabbing;
+}
+
+.widget-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
+
+.widget-content {
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #888;
+  font-family: monospace;
+  overflow: hidden; 
+}
+
+/* =========================================
+   6. DROPDOWN MENU
+   ========================================= */
+.menu-btn {
+  background: none;
+  border: none;
+  color: #bbb;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 0 5px;
+  border-radius: 4px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+  transition: all 0.2s;
+}
+
+.menu-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 35px;
+  right: 5px;
+  background-color: #252525;
+  border: 1px solid #444;
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+  z-index: 999;
+  min-width: 140px;
+  padding: 4px 0;
+  animation: fadeIn 0.1s ease-in-out;
+}
+
+.dropdown-item {
+  padding: 8px 12px;
+  font-size: 13px;
+  color: #eee;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.1s;
+}
+
+.dropdown-item:hover {
+  background-color: #2962ff;
+  color: white;
+}
+
+.delete-option:hover {
+  background-color: #d32f2f;
+}
+
+/* =========================================
+   7. EMPTY WIDGET SELECTOR
+   ========================================= */
+.empty-widget-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Ensures nothing spills out */
+}
+
+.big-plus-btn {
+  /* Dimensions */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px dashed #555;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  /* CRITICAL FIXES FOR SHAPE */
+  padding: 0;
+  flex-shrink: 0; /* Prevents squishing into oval */
+  position: relative; /* Needed for the CSS lines */
+}
+
+/* DRAW THE INNER PLUS (Horizontal) */
+.big-plus-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 2px;
+  background-color: #555;
+}
+
+/* DRAW THE INNER PLUS (Vertical) */
+.big-plus-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 20px;
+  background-color: #555;
+}
+
+/* Hover State for Inner Button */
+.big-plus-btn:hover {
+  border-color: #2962ff;
+  background-color: rgba(41, 98, 255, 0.1);
+  transform: scale(1.1);
+}
+
+.big-plus-btn:hover::before,
+.big-plus-btn:hover::after {
+  background-color: #2962ff; /* Turn the plus blue on hover */
+}
+
+/* =========================================
+   8. PROFILE ICON
+   ========================================= */
+
+.profile-icon {
+  position: fixed;
+  top: 20px;
+  right: 100px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  z-index: 2001;
+}
+
+.profile-icon:hover {
+  background-color: #0056b3;
+}
